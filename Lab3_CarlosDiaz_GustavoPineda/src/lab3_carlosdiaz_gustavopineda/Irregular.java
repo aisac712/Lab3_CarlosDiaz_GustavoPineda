@@ -1,6 +1,6 @@
 package lab3_carlosdiaz_gustavopineda;
 
-public class Irregular {
+public class Irregular extends ERegistro{
 
     public Irregular() {
         super();

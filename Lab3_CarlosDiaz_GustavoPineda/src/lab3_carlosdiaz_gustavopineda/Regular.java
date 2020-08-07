@@ -3,7 +3,7 @@ package lab3_carlosdiaz_gustavopineda;
 public class Regular extends ERegistro{
     private String user;
     private String pw;
-
+    
     public Regular() {
         super();
     }

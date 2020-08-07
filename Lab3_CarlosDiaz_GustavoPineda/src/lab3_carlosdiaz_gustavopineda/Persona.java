@@ -3,13 +3,13 @@ package lab3_carlosdiaz_gustavopineda;
 public class Persona {
     private String nombre;
     private Posicion posicion;
-    private String id;
+    private int id;
     private ERegistro estado;
 
     public Persona() {
     }
 
-    public Persona(String nombre, Posicion posicion, String id, ERegistro estado) {
+    public Persona(String nombre, Posicion posicion, int id, ERegistro estado) {
         this.nombre = nombre;
         this.posicion = posicion;
         this.id = id;
@@ -32,11 +32,11 @@ public class Persona {
         this.posicion = posicion;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,9 +48,13 @@ public class Persona {
         this.estado = estado;
     }
 
+    public String imprimirPersona() {
+        return "Persona{" + "nombre=" + nombre + ", posicion=" + posicion + ", id=" + id + ", estado=" + estado + '}';
+    }
+
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", posicion=" + posicion + ", id=" + id + ", estado=" + estado + '}';
+        return nombre + " - " + posicion;// + ", id=" + id + ", estado=" + estado + '}';
     }
     
 }
