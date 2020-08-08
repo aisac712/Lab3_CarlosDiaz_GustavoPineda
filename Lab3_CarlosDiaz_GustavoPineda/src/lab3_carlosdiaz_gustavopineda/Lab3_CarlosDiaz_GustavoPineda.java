@@ -14,16 +14,18 @@ public class Lab3_CarlosDiaz_GustavoPineda {
         int id;
         ERegistro estado;
         
+        ArrayList<Piso> pisos = new ArrayList();
         ArrayList<Persona> personas = new ArrayList();
         ArrayList<Integer> ids = new ArrayList();
+        ArrayList<Prueba> pruebas = new ArrayList();
         
         
         boolean seguir = false; String u; String c;     //u: usuario y c: contraseña
         int opcion = 0;                                 //dependiendo de esta, voy a ver el menù de superusuario o el de un usuario normal
         while(seguir==false){
             System.out.println("REGISTRO");
-            System.out.print("1. Ingresar como Administrador");
-            System.out.print("2. Ingresar como Mortal");
+            System.out.println("1. Ingresar como Administrador");
+            System.out.println("2. Ingresar como Mortal");
             int r = leer. nextInt();
             if(r==1){
                 System.out.print("Superusuario: ");
@@ -46,6 +48,8 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                 }
             }
         }
+        System.out.println("Ingresado con éxito");
+        System.out.println("");
         
         if(opcion==1){
             int op=0;
@@ -58,10 +62,14 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                 op = leer.nextInt();
                 switch (op) {
                     case 1: {
-                        System.out.println("");
+                        System.out.print("Nombre del administrador: ");
+                        String admin = leer.next();
+                        System.out.print("¿Cuántos evaluadores hay?: ");
+                        int c = leer.nextInt();
+                        System.out.print("Posición (del ArrayList) del evaluador: ");
+                        String evaluador = leer.next();
                     } break;
                     case 2: {
-                        Persona per = new Persona();
                         
                         System.out.print("Ingresa nombre de la persona: ");
                         nombre = leer.next();
@@ -94,36 +102,80 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                             System.out.println("1. Normal       2. Ranker");
                             p = leer.nextInt();
                         }
-                        if(p==1){       //normal
-                            //pNormal normal = new pNormal();
-                        } else{         //ranker
+                        if(p==1){                   //PERSONA NORMAL
+                            pNormal normal = new pNormal();
+                            normal.setNombre(nombre); normal.setPosicion(pos); normal.setId(c_id);
+                            
+                            System.out.println("¿En cuántas pruebas ha participado?");
+                            int cant = leer.nextInt();
+                            for (int i = 0; i <= cant; i++) {
+                                System.out.println("Posición de la prueba (en el ArrayList): ");
+                                int po = leer.nextInt();
+                                normal.getPruebas().add(pruebas.get(po));
+                            }
+                            
+                            System.out.print("Descripción de porqué querés escalar la torre: ");
+                            String desc = leer.next();
+                            normal.setDesc(desc);
+                            
+                            System.out.print("Estado de registro: ");
+                            System.out.println("1. Regular      2. Irregular");
+                            int e = leer.nextInt();
+                            if(e==1){
+                                Regular r = new Regular();
+                                String user;
+                                String pw;
+                                System.out.print("Ingresa tu usuario: ");
+                                user = leer.next();
+                                System.out.print("Contraseña: ");
+                                pw = leer.next();
+                                r.setUser(user); r.setPw(pw); r.setEstado(e);
+                                normal.setEstado(r);
+                            } else{
+                                Irregular i = new Irregular();
+                                normal.setEstado(i);
+                            }
+                            
+                            personas.add(normal);
+                            
+                        } else{                 //PERSONA RANKER
+                            pRanker ranker = new pRanker();
+                            ranker.setNombre(nombre); ranker.setPosicion(pos); ranker.setId(c_id);
+                            
+                            System.out.println("¿En cuántas pruebas has sido evaluador?");
+                            int cant = leer.nextInt();
+                            for (int i = 0; i <= cant; i++) {
+                                System.out.println("Posición de la prueba (en el ArrayList): ");
+                                int po = leer.nextInt();
+                                ranker.getLista().add(pruebas.get(po));
+                            }
+                            
+                            System.out.print("Estado de registro: ");
+                            System.out.println("1. Regular      2. Irregular");
+                            int e = leer.nextInt();
+                            if(e==1){
+                                Regular r = new Regular();
+                                String user;
+                                String pw;
+                                System.out.print("Ingresa tu usuario: ");
+                                user = leer.next();
+                                System.out.print("Contraseña: ");
+                                pw = leer.next();
+                                r.setUser(user); r.setPw(pw); r.setEstado(e);
+                                ranker.setEstado(r);
+                            } else{
+                                Irregular i = new Irregular();
+                                ranker.setEstado(i);
+                            }
+                            
+                            personas.add(ranker);
                             
                         }
                         
-                        System.out.print("Estado de registro: ");
-                        System.out.println("1. Regular      2. Irregular");
-                        int e = leer.nextInt();
-                        if(e==1){
-                            Regular r = new Regular();
-                            String user;
-                            String pw;
-                            System.out.print("Ingresa tu usuario: ");
-                            user = leer.next();
-                            System.out.print("Contraseña: ");
-                            pw = leer.next();
-                            r.setUser(user); r.setPw(pw); r.setEstado(e);
-                            per.setEstado(r);
-                        } else{
-                            Irregular i = new Irregular();
-                            i.setEstado(e); per.setEstado(i);
-                        }
-                        
-                        
-                        
-                        per.setNombre(nombre); per.setPosicion(pos);
-                        System.out.print("Tu identificación será: P"+c_id);
-                        per.setId(c_id); c_id++; ids.add(c_id);
-                        personas.add(per);
+                        System.out.println("");
+                        System.out.print("Tu identificación será: P"+c_id);     //enrealidad solo es el número, la P es de persona
+                        System.out.println("");
+                        c_id++; ids.add(c_id);
 
                     } break;
                     case 3: {
@@ -132,7 +184,7 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                         nombre = leer.next();
                         System.out.print("Posición del ranker que será evaluador:");
                         int posranker = leer.nextInt();
-                        personas.get(posranker);
+                        Persona evaluador = personas.get(posranker);
                         System.out.print("¿Cuántas personas formaron el equipo?");
                         int cantidad = leer.nextInt();
                         for (int i = 0; i < cantidad; i++) {
@@ -148,7 +200,14 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                         } else if(p==2){
                             prue.setEstado("Reprobada");
                         }
+                        prue.setNombre(nombre); prue.setEvaluador((pRanker) evaluador);
+                        pruebas.add(prue);
                     } break;
+                    case 4: {
+                        for (Prueba p : pruebas) {
+                            System.out.println(p);
+                        }
+                    }
                     default: System.out.println("Opción no válida");
                 }
             }
