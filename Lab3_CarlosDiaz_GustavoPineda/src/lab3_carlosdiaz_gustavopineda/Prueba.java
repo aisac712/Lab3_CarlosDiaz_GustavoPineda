@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Prueba {
     private String nombre;
-    private pRanker evaluador;
-    private ArrayList<Persona> equipo;
+    private Persona evaluador;
+    private ArrayList<Persona> equipo = new ArrayList();
     private String estado;                      //1aprobado o desaprobado
 
     public Prueba() {
     }
 
-    public Prueba(String nombre, pRanker evaluador, ArrayList<Persona> equipo, String estado) {
+    public Prueba(String nombre, Persona evaluador, ArrayList<Persona> equipo, String estado) {
         this.nombre = nombre;
         this.evaluador = evaluador;
         this.equipo = equipo;
@@ -26,11 +26,11 @@ public class Prueba {
         this.nombre = nombre;
     }
 
-    public pRanker getEvaluador() {
+    public Persona getEvaluador() {
         return evaluador;
     }
 
-    public void setEvaluador(pRanker evaluador) {
+    public void setEvaluador(Persona evaluador) {
         this.evaluador = evaluador;
     }
 

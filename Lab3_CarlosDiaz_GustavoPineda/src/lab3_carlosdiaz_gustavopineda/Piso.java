@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Piso {
     private String admin;
-    private ArrayList<pRanker> evaluadores;     //no solamente puede ser uno so, es un arraylsit
-    private pRanker director;
-    private ArrayList<Persona> personas;
+    private ArrayList<Persona> evaluadores = new ArrayList();     //no solamente puede ser uno so, es un arraylsit
+    private Persona director;
+    private ArrayList<Persona> personas = new ArrayList();
 
     public Piso() {
     }
 
-    public Piso(String admin, ArrayList<pRanker> evaluadores, pRanker director, ArrayList<Persona> personas) {
+    public Piso(String admin, ArrayList<Persona> evaluadores, Persona director, ArrayList<Persona> personas) {
         this.admin = admin;
         this.evaluadores = evaluadores;
         this.director = director;
@@ -26,19 +26,19 @@ public class Piso {
         this.admin = admin;
     }
 
-    public ArrayList<pRanker> getEvaluadores() {
+    public ArrayList<Persona> getEvaluadores() {
         return evaluadores;
     }
 
-    public void setEvaluadores(ArrayList<pRanker> evaluadores) {
+    public void setEvaluadores(ArrayList<Persona> evaluadores) {
         this.evaluadores = evaluadores;
     }
 
-    public pRanker getDirector() {
+    public Persona getDirector() {
         return director;
     }
 
-    public void setDirector(pRanker director) {
+    public void setDirector(Persona director) {
         this.director = director;
     }
 

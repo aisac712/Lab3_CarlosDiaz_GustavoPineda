@@ -76,14 +76,14 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                         }
                         if(nivel<67){
                             PInferior psi = new PInferior();
-                            psi.setDirector((pRanker) personas.get(ca)); psi.setAdmin(admin);
+                            psi.setDirector(personas.get(ca)); psi.setAdmin(admin);
                             
                             System.out.print("¿Cuántos evaluadores hay?: ");
                             ca = leer.nextInt();
                             for (int i = 0; i < ca; i++) {                          //para que pueda añadir varios a la vez
                                 System.out.print("Posición (del ArrayList) del evaluador: ");
                                 int ev = leer.nextInt();
-                                psi.getEvaluadores().add((pRanker) personas.get(ev));
+                                psi.getEvaluadores().add(personas.get(ev));
                             }
                             
                             System.out.print("¿Cuántas personas están en el piso?");
@@ -98,7 +98,7 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                             
                         } else if(nivel>=67){
                             PSuperior psu = new PSuperior();
-                            psu.setDirector((pRanker) personas.get(ca)); psu.setAdmin(admin);
+                            psu.setDirector(personas.get(ca)); psu.setAdmin(admin);
                             
                             System.out.print("¿Cuántos evaluadores hay?: ");
                             ca = leer.nextInt();
@@ -252,7 +252,7 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                         } else if(p==2){
                             prue.setEstado("Reprobada");
                         }
-                        prue.setNombre(nombre); prue.setEvaluador((pRanker) evaluador);
+                        prue.setNombre(nombre); prue.setEvaluador(evaluador);
                         pruebas.add(prue);
                     } break;
                     case 4: {

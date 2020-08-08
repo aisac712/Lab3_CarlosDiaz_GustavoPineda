@@ -12,7 +12,7 @@ public class PSuperior extends Piso{
         this.nivel = nivel;
     }
 
-    public PSuperior(int nivel, String admin, ArrayList<pRanker> evaluadores, pRanker director, ArrayList<Persona> personas) {
+    public PSuperior(int nivel, String admin, ArrayList<Persona> evaluadores, Persona director, ArrayList<Persona> personas) {
         super(admin, evaluadores, director, personas);
         this.nivel = nivel;
     }
