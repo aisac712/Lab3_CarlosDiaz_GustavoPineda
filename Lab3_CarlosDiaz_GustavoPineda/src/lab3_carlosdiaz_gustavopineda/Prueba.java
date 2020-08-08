@@ -55,7 +55,7 @@ public class Prueba {
         String salida = "";
         salida += "Informe de prueba: "+nombre+"\n";
         salida += "Evaluador: "+evaluador+"\n";
-        salida += "\n";
+        salida += "Equipo:"+"\n";
         for (int i = 0; i < equipo.size(); i++) {
             salida += "+"+equipo.get(i)+"\n";
         }

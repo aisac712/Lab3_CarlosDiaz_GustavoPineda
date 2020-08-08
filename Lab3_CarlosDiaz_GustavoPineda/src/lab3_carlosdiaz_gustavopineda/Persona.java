@@ -49,7 +49,7 @@ public class Persona {
     }
 
     public String imprimirPersona() {
-        return "Persona{" + "nombre=" + nombre + ", posicion=" + posicion + ", id=" + id + ", estado=" + estado + '}';
+        return "Persona{" + "Identificación=" + id + ", nombre=" + nombre + ", estado de registro=" + estado + ", posición=" + posicion + '}'+"\n";
     }
 
     @Override

@@ -9,5 +9,10 @@ public class Posicion {
     public Posicion(String tarea) {
         this.tarea = tarea;
     }
+
+    @Override
+    public String toString() {
+        return tarea;
+    }
     
 }

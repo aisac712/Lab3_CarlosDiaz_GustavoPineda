@@ -28,5 +28,10 @@ public class Regular extends ERegistro{
     public void setPw(String pw) {
         this.pw = pw;
     }
+
+    @Override
+    public String toString() {
+        return "Estado regular";
+    }
     
 }

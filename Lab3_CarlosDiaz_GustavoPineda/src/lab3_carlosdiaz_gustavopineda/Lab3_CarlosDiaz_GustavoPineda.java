@@ -58,68 +58,73 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                 System.out.println("2. Agregar persona");
                 System.out.println("3. Agregar prueba");
                 System.out.println("4. Informe de pruebas");
+                System.out.println("5. Salir");
                 System.out.print("Ingresa opción: ");
                 op = leer.nextInt();
                 switch (op) {
                     case 1: {
-                        //Piso pis = new Piso();
-                        System.out.print("Nombre del administrador: ");
-                        String admin = leer.next();
-                        System.out.println("Posición (del ArrayList) del director: ");
-                        int ca = leer.nextInt();
+                        if(!personas.isEmpty()){
+                            //Piso pis = new Piso();
+                            System.out.print("Nombre del administrador: ");
+                            String admin = leer.next();
+                            System.out.println("Posición (del ArrayList) del director: ");
+                            int ca = leer.nextInt();
 
-                        System.out.print("Nivel del piso: ");
-                        int nivel = leer.nextInt();
-                        while (nivel<=0 || nivel>134) {
-                            System.out.print("Nivel explorado del piso: ");
-                            nivel = leer.nextInt();
-                        }
-                        if(nivel<67){
-                            PInferior psi = new PInferior();
-                            psi.setDirector(personas.get(ca)); psi.setAdmin(admin);
-                            
-                            System.out.print("¿Cuántos evaluadores hay?: ");
-                            ca = leer.nextInt();
-                            for (int i = 0; i < ca; i++) {                          //para que pueda añadir varios a la vez
-                                System.out.print("Posición (del ArrayList) del evaluador: ");
-                                int ev = leer.nextInt();
-                                psi.getEvaluadores().add(personas.get(ev));
+                            System.out.print("Nivel del piso: ");
+                            int nivel = leer.nextInt();
+                            while (nivel<=0 || nivel>134) {
+                                System.out.print("Nivel explorado del piso: ");
+                                nivel = leer.nextInt();
+                            }
+                            if(nivel<67){
+                                PInferior psi = new PInferior();
+                                psi.setDirector(personas.get(ca)); psi.setAdmin(admin);
+
+                                System.out.print("¿Cuántos evaluadores hay?: ");
+                                ca = leer.nextInt();
+                                for (int i = 0; i < ca; i++) {                          //para que pueda añadir varios a la vez
+                                    System.out.print("Posición (del ArrayList) del evaluador: ");
+                                    int ev = leer.nextInt();
+                                    psi.getEvaluadores().add(personas.get(ev));
+                                }
+
+                                System.out.print("¿Cuántas personas están en el piso?");
+                                int cantidad = leer.nextInt();
+                                for (int i = 0; i < cantidad; i++) {
+                                    System.out.print("Posición de la persona:");
+                                    int p = leer.nextInt();
+                                    psi.getPersonas().add(personas.get(p));              //las saco del arraylist y las almaceno en el array de piso
+                                }
+
+                                pisos.add(psi);
+
+                            } else if(nivel>=67){
+                                PSuperior psu = new PSuperior();
+                                psu.setDirector(personas.get(ca)); psu.setAdmin(admin);
+
+                                System.out.print("¿Cuántos evaluadores hay?: ");
+                                ca = leer.nextInt();
+                                for (int i = 0; i < ca; i++) {                          //para que pueda añadir varios a la vez
+                                    System.out.print("Posición (del ArrayList) del evaluador: ");
+                                    int ev = leer.nextInt();
+                                    psu.getEvaluadores().add((pRanker) personas.get(ev));
+                                }
+
+                                System.out.print("¿Cuántas personas están en el piso?");
+                                int cantidad = leer.nextInt();
+                                for (int i = 0; i < cantidad; i++) {
+                                    System.out.print("Posición de la persona:");
+                                    int p = leer.nextInt();
+                                    psu.getPersonas().add(personas.get(p));              //las saco del arraylist y las almaceno en el array de piso
+                                }
+
+                                pisos.add(psu);
+
                             }
                             
-                            System.out.print("¿Cuántas personas están en el piso?");
-                            int cantidad = leer.nextInt();
-                            for (int i = 0; i < cantidad; i++) {
-                                System.out.print("Posición de la persona:");
-                                int p = leer.nextInt();
-                                psi.getPersonas().add(personas.get(p));              //las saco del arraylist y las almaceno en el array de piso
-                            }
-                            
-                            pisos.add(psi);
-                            
-                        } else if(nivel>=67){
-                            PSuperior psu = new PSuperior();
-                            psu.setDirector(personas.get(ca)); psu.setAdmin(admin);
-                            
-                            System.out.print("¿Cuántos evaluadores hay?: ");
-                            ca = leer.nextInt();
-                            for (int i = 0; i < ca; i++) {                          //para que pueda añadir varios a la vez
-                                System.out.print("Posición (del ArrayList) del evaluador: ");
-                                int ev = leer.nextInt();
-                                psu.getEvaluadores().add((pRanker) personas.get(ev));
-                            }
-                            
-                            System.out.print("¿Cuántas personas están en el piso?");
-                            int cantidad = leer.nextInt();
-                            for (int i = 0; i < cantidad; i++) {
-                                System.out.print("Posición de la persona:");
-                                int p = leer.nextInt();
-                                psu.getPersonas().add(personas.get(p));              //las saco del arraylist y las almaceno en el array de piso
-                            }
-                            
-                            pisos.add(psu);
-                            
-                        }
-                        
+                        } else
+                            System.out.println("No hay personas suficientes para crear el piso");
+                        System.out.println("");
                     } break;
                     case 2: {
                         
@@ -228,38 +233,49 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                         System.out.print("Tu identificación será: P"+c_id);     //enrealidad solo es el número, la P es de persona
                         System.out.println("");
                         c_id++; ids.add(c_id);
-
+                        System.out.println("");
                     } break;
                     case 3: {
-                        Prueba prue = new Prueba();
-                        System.out.print("Nombre: ");
-                        nombre = leer.next();
-                        System.out.print("Posición del ranker que será evaluador:");
-                        int posranker = leer.nextInt();
-                        Persona evaluador = personas.get(posranker);
-                        System.out.print("¿Cuántas personas formaron el equipo?");
-                        int cantidad = leer.nextInt();
-                        for (int i = 0; i < cantidad; i++) {
-                            System.out.print("Posición de la persona:");
+                        if(!personas.isEmpty()){
+                            Prueba prue = new Prueba();
+                            System.out.print("Nombre: ");
+                            nombre = leer.next();
+                            System.out.print("Posición del ranker que será evaluador:");
+                            int posranker = leer.nextInt();
+                            Persona evaluador = personas.get(posranker);
+                            System.out.print("¿Cuántas personas formaron el equipo?");
+                            int cantidad = leer.nextInt();
+                            for (int i = 0; i < cantidad; i++) {
+                                System.out.print("Posición de la persona:");
+                                int p = leer.nextInt();
+                                prue.getEquipo().add(personas.get(p));              //en mi equipo meto las personas con la `posicion dada
+                            }
+                            System.out.print("Estado de la prueba: ");
+                            System.out.print("1. Aprobada       2. Reprobada:   ");
                             int p = leer.nextInt();
-                            prue.getEquipo().add(personas.get(p));              //en mi equipo meto las personas con la `posicion dada
-                        }
-                        System.out.print("Estado de la prueba: ");
-                        System.out.print("1. Aprobada       2. Reprobada:   ");
-                        int p = leer.nextInt();
-                        if(p==1){
-                            prue.setEstado("Aprobada");
-                        } else if(p==2){
-                            prue.setEstado("Reprobada");
-                        }
-                        prue.setNombre(nombre); prue.setEvaluador(evaluador);
-                        pruebas.add(prue);
+                            if(p==1){
+                                prue.setEstado("Aprobada");
+                            } else if(p==2){
+                                prue.setEstado("Reprobada");
+                            }
+                            prue.setNombre(nombre); prue.setEvaluador(evaluador);
+                            pruebas.add(prue);
+                        } else
+                            System.out.println("No hay personas suficientes");
+                        
+                        System.out.println("");
                     } break;
                     case 4: {
-                        for (Prueba p : pruebas) {
-                            System.out.println(p);
-                        }
-                    }
+                        if(!personas.isEmpty()){
+                            System.out.println("");
+                            for (Prueba p : pruebas) {
+                                System.out.println(p);
+                            }
+                        } else
+                            System.out.println("No hay personas suficientes");
+                        
+                        System.out.println("");
+                    } break;
                     default: System.out.println("Opción no válida");
                 }
             }
@@ -273,6 +289,19 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                 op = leer.nextInt();
                 switch (op) {
                     case 1: {
+                        Persona per = new Persona();
+                        if(!personas.isEmpty()){
+                            System.out.println("");
+                            for (Prueba p : pruebas) {
+                                System.out.println(p);
+                            }
+                            System.out.println("");
+                            for (int i = 0; i < personas.size(); i++) {
+                                //System.out.print(i+"- "+personas.imprimirPersona());
+                            }
+                        } else
+                            System.out.println("No hay personas suficientes");
+                        
                         
                     } break;
                     case 2: {
