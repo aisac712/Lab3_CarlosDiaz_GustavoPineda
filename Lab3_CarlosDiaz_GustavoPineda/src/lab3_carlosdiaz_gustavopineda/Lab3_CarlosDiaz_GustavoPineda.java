@@ -62,12 +62,64 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                 op = leer.nextInt();
                 switch (op) {
                     case 1: {
+                        //Piso pis = new Piso();
                         System.out.print("Nombre del administrador: ");
                         String admin = leer.next();
-                        System.out.print("¿Cuántos evaluadores hay?: ");
-                        int c = leer.nextInt();
-                        System.out.print("Posición (del ArrayList) del evaluador: ");
-                        String evaluador = leer.next();
+                        System.out.println("Posición (del ArrayList) del director: ");
+                        int ca = leer.nextInt();
+
+                        System.out.print("Nivel del piso: ");
+                        int nivel = leer.nextInt();
+                        while (nivel<=0 || nivel>134) {
+                            System.out.print("Nivel explorado del piso: ");
+                            nivel = leer.nextInt();
+                        }
+                        if(nivel<67){
+                            PInferior psi = new PInferior();
+                            psi.setDirector((pRanker) personas.get(ca)); psi.setAdmin(admin);
+                            
+                            System.out.print("¿Cuántos evaluadores hay?: ");
+                            ca = leer.nextInt();
+                            for (int i = 0; i < ca; i++) {                          //para que pueda añadir varios a la vez
+                                System.out.print("Posición (del ArrayList) del evaluador: ");
+                                int ev = leer.nextInt();
+                                psi.getEvaluadores().add((pRanker) personas.get(ev));
+                            }
+                            
+                            System.out.print("¿Cuántas personas están en el piso?");
+                            int cantidad = leer.nextInt();
+                            for (int i = 0; i < cantidad; i++) {
+                                System.out.print("Posición de la persona:");
+                                int p = leer.nextInt();
+                                psi.getPersonas().add(personas.get(p));              //las saco del arraylist y las almaceno en el array de piso
+                            }
+                            
+                            pisos.add(psi);
+                            
+                        } else if(nivel>=67){
+                            PSuperior psu = new PSuperior();
+                            psu.setDirector((pRanker) personas.get(ca)); psu.setAdmin(admin);
+                            
+                            System.out.print("¿Cuántos evaluadores hay?: ");
+                            ca = leer.nextInt();
+                            for (int i = 0; i < ca; i++) {                          //para que pueda añadir varios a la vez
+                                System.out.print("Posición (del ArrayList) del evaluador: ");
+                                int ev = leer.nextInt();
+                                psu.getEvaluadores().add((pRanker) personas.get(ev));
+                            }
+                            
+                            System.out.print("¿Cuántas personas están en el piso?");
+                            int cantidad = leer.nextInt();
+                            for (int i = 0; i < cantidad; i++) {
+                                System.out.print("Posición de la persona:");
+                                int p = leer.nextInt();
+                                psu.getPersonas().add(personas.get(p));              //las saco del arraylist y las almaceno en el array de piso
+                            }
+                            
+                            pisos.add(psu);
+                            
+                        }
+                        
                     } break;
                     case 2: {
                         
@@ -108,7 +160,7 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                             
                             System.out.println("¿En cuántas pruebas ha participado?");
                             int cant = leer.nextInt();
-                            for (int i = 0; i <= cant; i++) {
+                            for (int i = 0; i < cant; i++) {
                                 System.out.println("Posición de la prueba (en el ArrayList): ");
                                 int po = leer.nextInt();
                                 normal.getPruebas().add(pruebas.get(po));
@@ -144,7 +196,7 @@ public class Lab3_CarlosDiaz_GustavoPineda {
                             
                             System.out.println("¿En cuántas pruebas has sido evaluador?");
                             int cant = leer.nextInt();
-                            for (int i = 0; i <= cant; i++) {
+                            for (int i = 0; i < cant; i++) {
                                 System.out.println("Posición de la prueba (en el ArrayList): ");
                                 int po = leer.nextInt();
                                 ranker.getLista().add(pruebas.get(po));
